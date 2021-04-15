@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'sessions/new'
+  resources :users, only: [:new, :create, :show] do
+    collection do
+      get :create
+    end
+  end
 end
