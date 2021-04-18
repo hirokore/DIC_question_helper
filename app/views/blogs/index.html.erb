@@ -1,0 +1,17 @@
+<h1>一覧</h1>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>本文</th>
+  </tr>
+  <% @blogs.each do |blogs| %>
+  <tr>
+    <td><%= blogs.title %></td>    
+    <td><%= blogs.content %></td>
+    <td><%= link_to "編集", edit_blog_path(blogs.id) %></td>
+    <td><%= link_to "削除", blog_path(blogs.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to "投稿画面へ", new_blog_path %>
