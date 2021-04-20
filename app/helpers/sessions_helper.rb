@@ -6,4 +6,8 @@ module SessionsHelper
 	def logged_in?
 		current_user.present?
 	end
+
+	def test_echo_session
+    test_echo = "hello!session!"
+  end
 end

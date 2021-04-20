@@ -1,11 +1,12 @@
 class BlogsController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
   before_action :set_blog, only: [:edit, :update, :show, :destroy]
   def new
     @blog = Blog.new
   end
 
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     if params[:back]
       render :new
     else
@@ -21,7 +22,8 @@ class BlogsController < ApplicationController
     @blogs = Blog.all
   end
 
-  def show  
+  def show
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
   
   def destroy
@@ -41,7 +43,7 @@ class BlogsController < ApplicationController
   end
   
   def confirm
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     render :new if @blog.invalid?
   end
   

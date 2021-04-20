@@ -8,6 +8,7 @@
   <tr>
     <td><%= blogs.title %></td>    
     <td><%= blogs.content %></td>
+    <td><%= link_to "詳細", blog_path(blogs.id)%></td>
     <td><%= link_to "編集", edit_blog_path(blogs.id) %></td>
     <td><%= link_to "削除", blog_path(blogs.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
